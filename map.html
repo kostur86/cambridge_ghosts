@@ -36,12 +36,15 @@
                 map_canvas.style.top = map_img.offsetTop + "px";
 
                 var ctx = map_canvas.getContext("2d");
+
+                var circleX = 150 + position.coords.longitude;
+                var circleY = 100 + position.coords.latitude;
                 
                 ctx.fillStyle = "#FF0000";
                 ctx.beginPath();
                 ctx.arc(
-                    50 + position.coords.longitude,
-                    0 + position.coords.latitude,
+                    circleX,
+                    circleY,
                     10,
                     0,
                     2 * Math.PI
@@ -52,8 +55,8 @@
                 ctx.fillStyle = "#00FF00";
                 ctx.beginPath();
                 ctx.arc(
-                    50 + position.coords.longitude,
-                    0 + position.coords.latitude,
+                    circleX,
+                    circleY,
                     7,
                     0,
                     2 * Math.PI
