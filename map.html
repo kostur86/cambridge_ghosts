@@ -5,9 +5,9 @@
     <body>
         <h1>Location</h1><br>
 
-        <canvas id="map_canvas">
-            <img src="imgs/map_001.png" alt="Map">
-        </canvas>
+        
+        <img id="map_image" src="imgs/map_001.png" alt="Map">
+        <canvas id="map_canvas"  width='1000px' height='1000px'></canvas>
 
         <br>
 
@@ -16,7 +16,8 @@
         
         <script>
             var x = document.getElementById("demo");
-            var map_canvas = document.getElementById("demo");
+            var map_canvas = document.getElementById("map_canvas");
+            var map_img = document.getElementById("map_image");
 
             function getLocation() {
                 if (navigator.geolocation) {
@@ -29,6 +30,10 @@
             function showPosition(position) {
                 x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
+
+                map_canvas.style.position = "absolute";
+                map_canvas.style.left = map_img.offsetLeft + "px";
+                map_canvas.style.top = map_img.offsetTop + "px";
 
                 var ctx = map_canvas.getContext("2d");
                 ctx.fillStyle = "#FF0000";
