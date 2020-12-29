@@ -4,13 +4,19 @@
 
     <body>
         <h1>Location</h1><br>
-        <img src="imgs/map_001.png" alt="Map"><br>
+
+        <canvas id="map_canvas">
+            <img src="imgs/map_001.png" alt="Map">
+        </canvas>
+
+        <br>
 
         <div id="demo">No location discovered :/</div>
 
         
         <script>
             var x = document.getElementById("demo");
+            var map_canvas = document.getElementById("demo");
 
             function getLocation() {
                 if (navigator.geolocation) {
@@ -23,6 +29,18 @@
             function showPosition(position) {
                 x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
+
+                var ctx = map_canvas.getContext("2d");
+                ctx.fillStyle = "#FF0000";
+                ctx.beginPath();
+                ctx.arc(
+                    50 + position.coords.latitude,
+                    0 + position.coords.longitude,
+                    50,
+                    0,
+                    2 * Math.PI
+                );
+                ctx.fill();
             }
 
             window.addEventListener("load", getLocation);
